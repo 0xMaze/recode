@@ -51,6 +51,7 @@ const ExplainCodePage = () => {
 
   return (
     <div>
+      <h1>Explain Code</h1>
       <form onSubmit={handleSubmit}>
         <InputEditor
           codeSnippet={codeSnippet}

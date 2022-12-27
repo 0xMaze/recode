@@ -60,12 +60,13 @@ const TranslateCodePage = () => {
   return (
     <div style={{ overflow: "hidden" }}>
       <form onSubmit={handleSubmit}>
+        <h1>Translate Code</h1>
         <div id="input-field">
           <label htmlFor="from-language">From Language:</label>
           <input
             type="text"
             id="from-language"
-            value={fromLanguage}
+            value={fromLanguage.toLowerCase()}
             onChange={(event) => setFromLanguage(event.target.value)}
           />
         </div>
@@ -79,8 +80,6 @@ const TranslateCodePage = () => {
           />
         </div>
 
-        <br />
-
         <AceEditor
           style={style}
           mode={fromLanguage}
@@ -89,9 +88,9 @@ const TranslateCodePage = () => {
         />
 
         <AceEditor style={style} mode={toLanguage} value={output} readOnly />
-        <div id="send-button">
-          <button type="submit">Translate</button>
-        </div>
+        <button id="send-button" type="submit">
+          Translate
+        </button>
       </form>
     </div>
   );

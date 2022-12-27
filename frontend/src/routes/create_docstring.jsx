@@ -53,6 +53,7 @@ const CreateDocStringPage = () => {
 
   return (
     <div>
+      <h1>Create Docstring</h1>
       <form onSubmit={handleSubmit}>
         <InputEditor
           codeSnippet={codeSnippet}

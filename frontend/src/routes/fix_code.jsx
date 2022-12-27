@@ -58,6 +58,7 @@ const FixCodePage = () => {
 
   return (
     <div>
+      <h1>Fix Code</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="language">Language:</label>
         <input

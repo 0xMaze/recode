@@ -99,11 +99,8 @@ form[action$="destroy"] button {
 
 /* make the button in the center */
 #send-button {
-  justify-content: center;
-
-  /*move to the right*/
-  margin-left: 450px;
-  margin-top: 1rem;
+  margin: 0 auto;
+  display: block;
 }
 
 .sr-only {
