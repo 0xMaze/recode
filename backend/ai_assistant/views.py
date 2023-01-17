@@ -16,7 +16,6 @@ from .serializers import (
     TimeComplexitySerializer,
     MyTokenObtainPairSerializer,
     RegisterSerializer,
-    ChatBotSerializer,
 )
 
 from rest_framework import generics

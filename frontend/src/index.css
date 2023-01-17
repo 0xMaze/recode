@@ -224,9 +224,6 @@ form[action$="destroy"] button {
   color: inherit;
 }
 
-i {
-  color: #818181;
-}
 #sidebar nav .active i {
   color: inherit;
 }

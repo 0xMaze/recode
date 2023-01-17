@@ -55,9 +55,6 @@ def create_docstring(code_snippet):
         stop=['"""'],
     )
 
-    doc_string = f'"""\n{response.choices[0].text}\n"""'
-    return doc_string
-
 
 def fix_code(code_snippet, language):
     openai.api_key = API_KEY

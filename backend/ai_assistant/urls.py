@@ -5,7 +5,6 @@ from .views import (
     CreateDocStringViewSet,
     FixCodeViewSet,
     TimeComplexityViewSet,
-    ChatBotViewSet,
     MyTokenObtainPairView,
     RegisterView,
 )
