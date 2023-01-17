@@ -1,15 +1,40 @@
-import openai
 from . import utils
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.generics import CreateAPIView
-from .models import TranslatedCode, CodeExplanation, PythonDocString, FixedCode
+from .models import (
+    TranslatedCode,
+    CodeExplanation,
+    PythonDocString,
+    FixedCode,
+    TimeComplexity,
+)
 from .serializers import (
     TranslatedCodeSerializer,
     CodeExplanationSerializer,
     PythonDocStringSerializer,
     FixedCodeSerializer,
+    TimeComplexitySerializer,
+    MyTokenObtainPairSerializer,
+    RegisterSerializer,
+    ChatBotSerializer,
 )
+
+from rest_framework import generics
+from django.contrib.auth.models import User
+from rest_framework.response import Response
+from rest_framework.decorators import permission_classes
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import AllowAny, IsAuthenticated
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
 
 
 class TranslateCodeViewSet(viewsets.ViewSet):
@@ -120,3 +145,30 @@ class FixCodeViewSet(viewsets.ViewSet):
         )
 
         return Response(fixed_code)
+
+
+class TimeComplexityViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = TimeComplexitySerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            code_snippet = serializer.validated_data.get("code_snippet")
+
+        if TimeComplexity.objects.filter(code_snippet=code_snippet).exists():
+            # get the object from the database where code_snippet matches, if there are multiple, get the first one
+            obj = TimeComplexity.objects.filter(
+                code_snippet=code_snippet
+            ).first()
+
+            time_complexity = obj.time_complexity
+
+            return Response(time_complexity)
+
+        time_complexity = utils.get_time_complexity(code_snippet)
+        print(time_complexity)
+
+        serializer.save(
+            time_complexity=time_complexity,
+        )
+
+        return Response(time_complexity)

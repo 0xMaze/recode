@@ -39,3 +39,10 @@ class FixedCode(models.Model):
     fixed_code = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class TimeComplexity(models.Model):
+    code_snippet = models.TextField()
+    time_complexity = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

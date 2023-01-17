@@ -8,6 +8,8 @@ import TranslateCodePage from "./routes/translate_code";
 import CreateDocstringPage from "./routes/create_docstring";
 import FixCodePage from "./routes/fix_code";
 import ExplainCodePage from "./routes/explain_code";
+import GetTimeComplexityPage from "./routes/get_time_complexity";
+import Home from "./routes/home";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "explain-code",
         element: <ExplainCodePage />,
+      },
+      {
+        path: "get-time-complexity",
+        element: <GetTimeComplexityPage />,
+      },
+      {
+        path: "/",
+        element: <Home />,
       },
     ],
   },

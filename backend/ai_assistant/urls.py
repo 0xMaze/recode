@@ -4,6 +4,14 @@ from .views import (
     ExplainCodeViewSet,
     CreateDocStringViewSet,
     FixCodeViewSet,
+    TimeComplexityViewSet,
+    ChatBotViewSet,
+    MyTokenObtainPairView,
+    RegisterView,
+)
+
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
 )
 
 
@@ -28,4 +36,12 @@ urlpatterns = [
         FixCodeViewSet.as_view({"post": "create"}),
         name="fix-code",
     ),
+    path(
+        "time-complexity/",
+        TimeComplexityViewSet.as_view({"post": "create"}),
+        name="time-complexity",
+    ),
+    path("token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("register/", RegisterView.as_view(), name="auth_register"),
 ]

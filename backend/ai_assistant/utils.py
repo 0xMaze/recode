@@ -75,3 +75,20 @@ def fix_code(code_snippet, language):
 
     fixed_code = response.choices[0].text
     return fixed_code
+
+
+def get_time_complexity(code_snippet):
+    openai.api_key = API_KEY
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=f'{code_snippet}\n"""\nThe time complexity of this function is',
+        temperature=0,
+        max_tokens=2000,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=["\n"],
+    )
+
+    time_complexity = response.choices[0].text
+    return time_complexity
